@@ -47,12 +47,12 @@ async function uploadFile(email,filename) {
 
 
 var app = express();
-var corsOptions = {
-  origin: 'http://www.mccollinsmedia.com',
-  optionsSuccessStatus: 200 // For legacy browser support
-}
+// var corsOptions = {
+//   origin: 'http://www.mccollinsmedia.com',
+//   optionsSuccessStatus: 200 // For legacy browser support
+// }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.set('view engine', 'ejs');
 
@@ -85,7 +85,7 @@ var upload = multer({storage: storage});
 //     });
 // })
 
-app.post('/upload',upload.single('file'),(req,res,next) => {
+app.post('/upload',upload.single('files'),(req,res,next) => {
   const file = req.file;
   console.log(req.body.Email);
   if(file){
@@ -95,4 +95,4 @@ app.post('/upload',upload.single('file'),(req,res,next) => {
 
 
 
-app.listen(5353);
+app.listen(proccess.env.PORT || 5353);
